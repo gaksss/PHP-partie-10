@@ -17,31 +17,31 @@
 </head>
 
 <body>
-    <?php
-    if (!empty($_POST)) {
-        echo '<div class="form-container">';
+    <!-- <?php
+            // if (!empty($_POST)) {
+            //     echo '<div class="form-container">';
 
-        echo "<h1>Récapitulatif des données envoyées</h1>";
-        echo "Nom : " . htmlspecialchars($_POST['nom']) . "<br>";
-        echo "Prénom : " . htmlspecialchars($_POST['prenom']) . "<br>";
-        echo "Date de naissance : " . htmlspecialchars($_POST['date_naissance']) . "<br>";
-        echo "Pays de naissance : " . htmlspecialchars($_POST['pays_naissance']) . "<br>";
-        echo "Nationalité : " . htmlspecialchars($_POST['nationalite']) . "<br>";
-        echo "Adresse : " . htmlspecialchars($_POST['adresse']) . "<br>";
-        echo "Email : " . htmlspecialchars($_POST['email']) . "<br>";
-        echo "Téléphone : " . htmlspecialchars($_POST['telephone']) . "<br>";
-        echo "Diplôme : " . htmlspecialchars($_POST['diplome']) . "<br>";
-        echo "Numéro Pôle Emploi : " . htmlspecialchars($_POST['pole_emploi']) . "<br>";
-        echo "Nombre de badges : " . htmlspecialchars($_POST['badges']) . "<br>";
-        echo "Liens Codecademy : " . htmlspecialchars($_POST['codecademy']) . "<br>";
-        echo "Super héros/héroïne : " . htmlspecialchars($_POST['super_hero']) . "<br>";
-        echo "Hack : " . nl2br(htmlspecialchars($_POST['hack'])) . "<br>";
-        echo "Expérience en programmation : " . nl2br(htmlspecialchars($_POST['experience'])) . "<br>";
+            //     echo "<h1>Récapitulatif des données envoyées</h1>";
+            //     echo "Nom : " . htmlspecialchars($_POST['nom']) . "<br>";
+            //     echo "Prénom : " . htmlspecialchars($_POST['prenom']) . "<br>";
+            //     echo "Date de naissance : " . htmlspecialchars($_POST['date_naissance']) . "<br>";
+            //     echo "Pays de naissance : " . htmlspecialchars($_POST['pays_naissance']) . "<br>";
+            //     echo "Nationalité : " . htmlspecialchars($_POST['nationalite']) . "<br>";
+            //     echo "Adresse : " . htmlspecialchars($_POST['adresse']) . "<br>";
+            //     echo "Email : " . htmlspecialchars($_POST['email']) . "<br>";
+            //     echo "Téléphone : " . htmlspecialchars($_POST['telephone']) . "<br>";
+            //     echo "Diplôme : " . htmlspecialchars($_POST['diplome']) . "<br>";
+            //     echo "Numéro Pôle Emploi : " . htmlspecialchars($_POST['pole_emploi']) . "<br>";
+            //     echo "Nombre de badges : " . htmlspecialchars($_POST['badges']) . "<br>";
+            //     echo "Liens Codecademy : " . htmlspecialchars($_POST['codecademy']) . "<br>";
+            //     echo "Super héros/héroïne : " . htmlspecialchars($_POST['super_hero']) . "<br>";
+            //     echo "Hack : " . nl2br(htmlspecialchars($_POST['hack'])) . "<br>";
+            //     echo "Expérience en programmation : " . nl2br(htmlspecialchars($_POST['experience'])) . "<br>";
 
-        echo "</div>";
-    } else {
+            //     echo "</div>";
+            // } else {
 
-    ?>
+            ?>
         <div class="form-container">
             <h1>Formulaire d'inscription</h1>
             <form method="post">
@@ -117,9 +117,61 @@
             </form>
         </div>
     <?php
-    }
+    // }
+
+    ?> -->
+
+
+    <div class="form-container">
+        <h1>Formulaire Civilité</h1>
+        <form method="POST">
+            <div class="form-group">
+                <label for="civilite">Civilité</label>
+                <select id="civilite" name="civilite" required value="<?php echo isset($_POST['civilite']) ? $_POST['civilite'] : '' ?>" >
+                    <option value="">-- Sélectionnez --</option>
+                    <option value="monsieur" <?php echo (isset($_POST['civilite']) && $_POST['civilite'] == 'monsieur') ? 'selected' : ''; ?>>Monsieur</option>
+                    <option value="madame" <?php echo (isset($_POST['civilite']) && $_POST['civilite'] == 'madame') ? 'selected' : ''; ?>>Madame</option>
+                    <option value="autre" <?php echo (isset($_POST['civilite']) && $_POST['civilite'] == 'autre') ? 'selected' : ''; ?>>Autre</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="nom">Nom</label>
+                <input type="text" id="nom" name="nom" required value="<?php echo isset($_POST['nom']) ? $_POST['nom'] : '' ?>" >
+            </div>
+            <div class="form-group">
+                <label for="prenom">Prénom</label>
+                <input type="text" id="prenom" name="prenom" required value="<?php echo isset($_POST['prenom']) ? $_POST['prenom'] : '' ?>" >
+            </div>
+            <div class="form-group">
+                <label for="age">Âge</label>
+                <input type="number" id="age" name="age" required value="<?php echo isset($_POST['age']) ? $_POST['age'] : '' ?>" >
+            </div>
+            <div class="form-group">
+                <label for="societe">Société</label>
+                <input type="text" id="societe" name="societe" required value="<?php echo isset($_POST['societe']) ? $_POST['societe'] : '' ?>" >
+            </div>
+            <div class="form-group">
+                <button type="submit">Soumettre</button>
+            </div>
+        </form>
+    </div>
+<div class="form-group">
+<?php
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+
+    echo "<h1>Récapitulatif des données envoyées</h1>";
+    echo "Civilité : " . htmlspecialchars($_POST['civilite']) . "<br>";
+    echo "Nom : " . htmlspecialchars($_POST['nom']) . "<br>";
+    echo "Prénom : " . htmlspecialchars($_POST['prenom']) . "<br>";
+    echo "Âge : " . htmlspecialchars($_POST['age']) . "<br>";
+    echo "Société : " . htmlspecialchars($_POST['societe']) . "<br>";
+} else {
     
-    ?>
+    die("<p>Le formulaire n'a pas été soumis correctement.</p>");
+}
+?>
+
+</div>
 </body>
 
 </html>
